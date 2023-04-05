@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,11 +13,18 @@ public class PlayerController : MonoBehaviour
 
     public void OnMoveInputAction(InputAction.CallbackContext context)
     {
-
+        m_player.MoveForce = context.ReadValue<Vector2>().x;
     }
 
-    public void OnJumpInputAction(InputAction.CallbackContext context)
+    public void OnSpaceInputAction(InputAction.CallbackContext context)
     {
-
+        if (context.phase == InputActionPhase.Started)
+        {
+            m_player.FlyingForce = 1f;
+        }
+        else if (context.phase == InputActionPhase.Canceled)
+        {
+            m_player.FlyingForce = 0f;
+        }
     }
 }

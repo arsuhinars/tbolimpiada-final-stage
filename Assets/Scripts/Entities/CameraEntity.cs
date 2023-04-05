@@ -4,14 +4,37 @@ using UnityEngine;
 
 public class CameraEntity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerEntity m_player;
+
+    private float m_velocity = Vector3.zero;
+    [SerializeField]
+    private float m_moveSmoothTime = 0.2f;
+
+    private void Start()
     {
-        
+        GameManager.Instance.OnGameStart += OnGameStart;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnGameStart()
+    {
+        m_player = FindObjectOfType<PlayerEntity>();
+    }
+
+    private void Update()
+    {
+        var pos = transform.position;
+
+        pos.x = Mathf.SmoothDamp(
+            pos.x,
+            m_player.transform.position.x,
+            ref m_velocity,
+            m_moveSmoothTime
+        );
+
+        transform.position = pos;
+    }
+
+    private void OnTriggerExit(Collider other)
     {
         
     }

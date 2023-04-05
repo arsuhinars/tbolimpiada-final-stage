@@ -27,4 +27,23 @@ public class PlayerController : MonoBehaviour
             m_player.FlyingForce = 0f;
         }
     }
+
+    public void OnPauseInputAction(InputAction.CallbackContext context)
+    {
+        if (context.phase != InputActionPhase.Started)
+        {
+            return;
+        }
+
+        var gameManager = GameManager.Instance;
+
+        if (gameManager.IsGamePaused)
+        {
+            gameManager.ResumeGame();
+        }
+        else
+        {
+            gameManager.PauseGame();
+        }
+    }
 }

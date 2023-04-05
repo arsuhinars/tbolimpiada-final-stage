@@ -6,7 +6,7 @@ public class CameraEntity : MonoBehaviour
 {
     private PlayerEntity m_player;
 
-    private float m_velocity = Vector3.zero;
+    private float m_velocity = 0f;
     [SerializeField]
     private float m_moveSmoothTime = 0.2f;
 
@@ -22,6 +22,11 @@ public class CameraEntity : MonoBehaviour
 
     private void Update()
     {
+        if (!GameManager.Instance.IsGameStarted)
+        {
+            return;
+        }
+
         var pos = transform.position;
 
         pos.x = Mathf.SmoothDamp(

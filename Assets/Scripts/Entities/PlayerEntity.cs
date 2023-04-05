@@ -80,13 +80,12 @@ public class PlayerEntity : MonoBehaviour
     private bool IsGrounded()
     {
         var hit = Physics2D.Raycast(
-            new Vector2(transform.position.x, transform.position.y),
+            new Vector2(transform.position.x, transform.position.y - 0.6f),
             Vector2.down,
             m_minGroundDistance,
             m_groundMask
         );
 
-        Debug.Log(hit);
         return hit.collider != null && hit.distance < m_minGroundDistance;
     }
 }

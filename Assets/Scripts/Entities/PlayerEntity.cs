@@ -75,6 +75,7 @@ public class PlayerEntity : MonoBehaviour
     {
         m_isAlive = false;
         m_rb.isKinematic = true;
+        GameManager.Instance.EndGame();
     }
 
     private bool IsGrounded()

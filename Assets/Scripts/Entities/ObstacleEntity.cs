@@ -4,15 +4,14 @@ using UnityEngine;
 
 public class ObstacleEntity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private string m_playerTag;
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider other)
     {
-        
+        if (other.CompareTag(m_playerTag))
+        {
+            other.GetComponent<PlayerEntity>().Kill();
+        }
     }
 }

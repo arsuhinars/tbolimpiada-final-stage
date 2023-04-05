@@ -75,6 +75,8 @@ public class PlayerEntity : MonoBehaviour
     {
         m_isAlive = false;
         m_rb.isKinematic = true;
+        m_rb.velocity = Vector2.zero;
+        m_rb.angularVelocity = 0f;
         GameManager.Instance.EndGame();
     }
 
